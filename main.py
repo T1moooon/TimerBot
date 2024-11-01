@@ -4,9 +4,10 @@ import pytimeparse
 from dotenv import load_dotenv
 
 
-load_dotenv()
 TG_TOKEN = os.getenv("TG_TOKEN")
 TG_CHAT_ID = os.getenv("TG_CHAT_ID")
+
+
 bot = ptbot.Bot(TG_TOKEN)
 
 
@@ -38,6 +39,7 @@ def notify_progress(secs_left, message_id, author_id, total):
 
 
 def main():
+    load_dotenv()
     bot.reply_on_message(wait)
     bot.run_bot()
 
