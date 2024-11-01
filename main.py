@@ -4,13 +4,6 @@ import pytimeparse
 from dotenv import load_dotenv
 
 
-TG_TOKEN = os.getenv("TG_TOKEN")
-TG_CHAT_ID = os.getenv("TG_CHAT_ID")
-
-
-bot = ptbot.Bot(TG_TOKEN)
-
-
 def render_progressbar(total, iteration, prefix='', suffix='', length=30, fill='█', zfill='░'):
     iteration = min(total, iteration)
     percent = "{0:.1f}"
@@ -39,7 +32,10 @@ def notify_progress(secs_left, message_id, author_id, total):
 
 
 def main():
+    global bot
     load_dotenv()
+    tg_token = os.getenv("TG_TOKEN")
+    bot = ptbot.Bot(tg_token)
     bot.reply_on_message(wait)
     bot.run_bot()
 
